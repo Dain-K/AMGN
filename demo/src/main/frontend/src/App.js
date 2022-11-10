@@ -1,20 +1,20 @@
 import "./App.css";
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+// import React, { useEffect, useState } from "react";
+// import axios from "axios";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Header from "./components/Header";
 
 function App() {
-  const [hello, setHello] = useState("");
+  // const [hello, setHello] = useState("");
 
-  useEffect(() => {
-    axios
-      .get("/api/hello")
-      .then((response) => setHello(response.data))
-      .catch((error) => console.log(error));
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get("/api/hello")
+  //     .then((response) => setHello(response.data))
+  //     .catch((error) => console.log(error));
+  // }, []);
 
   return (
     <Router>
