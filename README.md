@@ -36,8 +36,10 @@ use amgnProject;
 drop user cos;
 create user 'cos'@'%' identified by 'cos1234';
 grant all privileges on *.* to 'cos'@'%';
-create database amgn;
-use amgn;
+create database amgnProject;
+use amgnProject;
 ```
+
+-> MySQL에 amgnProject 스키마 생성완료
 
 ### :two: Spring 프로젝트 생성
