@@ -1,5 +1,7 @@
 ## 스프링 시큐리티 환경설정
 
+### :one: MySQL 설정
+
 아래의 코드는 mySQL workbench query 문으로 프로젝트를 시작하기 전에 실행한다.
 
 - 기존 cos 유저 삭제
@@ -18,7 +20,7 @@ create user 'cos'@'%' indentified by 'cos1234';
 - to 유저이름@아이피주소
 
 ```sql
-create user 'cos'@'%' indentified by 'cos1234';
+create user 'cos'@'%' identified by 'cos1234';
 ```
 
 - 데이터베이스 생성 (이름: amgnProject)
@@ -32,8 +34,10 @@ use amgnProject;
 
 ```sql
 drop user cos;
-create user 'cos'@'%' indentified by 'cos1234';
+create user 'cos'@'%' identified by 'cos1234';
 grant all privileges on *.* to 'cos'@'%';
-create database amgnProject;
-use amgnProject;
+create database amgn;
+use amgn;
 ```
+
+### :two: Spring 프로젝트 생성
