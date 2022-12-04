@@ -39,8 +39,10 @@ public class SecurityConfig{
             .anyRequest().permitAll() // 나머지 주소는 모든 권한이 허용
             .and()
             .formLogin()
-            .loginPage("/loginForm");
-
+            .loginPage("/loginForm")
+            //.usernameParameter("\"email\"")
+            .loginProcessingUrl("/login") // /login이 호출되면 시큐리티가 낚아채서 대신 로그인을 해줌
+            .defaultSuccessUrl("/");
 
         return http.build();
     }

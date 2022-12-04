@@ -41,7 +41,7 @@ public class UserController {
 		String encPassword = bCryptPasswordEncoder.encode(rawPassword);
 		user.setPassword(encPassword);
 		userRepository.save(user);
-		return "redirect:/loginForm";
+		return "redirect:/index";
 	}
 	
 }
