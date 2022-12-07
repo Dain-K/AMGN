@@ -5,9 +5,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cos.amgn.model.User;
+import com.cos.amgn.model.UserCertificate;
+import com.cos.amgn.repository.CertificateRepository;
 import com.cos.amgn.repository.UserRepository;
 
 @Controller // View를 리턴하겠다!!
@@ -19,9 +20,12 @@ public class UserController {
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
+	@Autowired
+	private CertificateRepository certificateRepository;
+	
 	@GetMapping({"","/"})
-	public String index() {
-		return "index";
+	public String certificateForm() {
+		return "certificateForm";
 	}
 	
 	@GetMapping("/loginForm")
@@ -34,6 +38,11 @@ public class UserController {
 		return "joinForm";
 	}
 	
+	@GetMapping("/result")
+	public String index() {
+		return "result";
+	}
+	
 	@PostMapping("/join") // 회원가입 입력값 저장
 	public String join(User user) {
 		user.setRole("ROLE_USER");
@@ -41,7 +50,15 @@ public class UserController {
 		String encPassword = bCryptPasswordEncoder.encode(rawPassword);
 		user.setPassword(encPassword);
 		userRepository.save(user);
-		return "redirect:/index";
+		return "redirect:/loginForm";
 	}
+	
+	@PostMapping("/choose") // 유저 데이터 저장
+	public String choose(UserCertificate usercertificate) {
+		certificateRepository.save(usercertificate);
+		return "result";
+	}
+	
+	
 	
 }
