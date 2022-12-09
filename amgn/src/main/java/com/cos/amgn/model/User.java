@@ -9,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,22 +17,23 @@ import lombok.Setter;
 @Getter
 @Setter
 public class User {
+	
 	@Id // primary key
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "user_id")
-	private int id;
+	@Column(name = "user_num")
+	private int id; // auto_increment
 	@Column(nullable = false, length = 50)
 	private String username;
-	@Column(nullable = false, length = 100)
+	@Column(nullable = false, unique = true, length = 100)
 	private String email;
-	@Column(nullable = false, length = 100)
+	@Column(nullable = false, length = 100) // 해쉬로 암호화 하기 위해 길이 지정
 	private String password;
 	@Column(nullable = false)
 	private String birth;
 	@Column(nullable = false)
 	private String phone;
 	@Column(nullable = true)
-	private String sex;
+	private String gender;
 	@Column(nullable = false)
 	private String address;
 	@Column(nullable = false)
@@ -48,6 +50,23 @@ public class User {
 	
 	@CreationTimestamp
 	private Timestamp createDate; // user 생성 날짜
+	
+	@Builder
+	public void UserFormDto(String username, String password, String email, String birth, String phone, String gender,  String address, String education, String status, String university, String department, String mbti, String role) {
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.birth = birth;
+		this.phone = phone;
+		this.gender = gender;
+		this.address = address;
+		this.education = education;
+		this.status = status;
+		this.university = university;
+		this.department = department;
+		this.mbti = mbti;
+		this.role = role;
+	}
 	
 	public String getUsername() {
 		return username;
@@ -89,12 +108,12 @@ public class User {
 		this.email = email;
 	}
 	
-	public String getSex() {
-		return sex;
+	public String getGender() {
+		return gender;
 	}
 	
-	public void setSex(String sex) {
-		this.sex = sex;
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 	
 	public String getAddress() {

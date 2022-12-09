@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.cos.amgn.auth.PrincipalDetailsService;
 import com.cos.amgn.model.User;
 import com.cos.amgn.model.UserCertificate;
 import com.cos.amgn.repository.CertificateRepository;
@@ -16,6 +17,9 @@ public class UserController {
 	
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private PrincipalDetailsService principalDetailsService;
 	
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -49,7 +53,7 @@ public class UserController {
 		String rawPassword = user.getPassword();
 		String encPassword = bCryptPasswordEncoder.encode(rawPassword);
 		user.setPassword(encPassword);
-		userRepository.save(user);
+		principalDetailsService.saveUser(user);
 		return "redirect:/loginForm";
 	}
 	

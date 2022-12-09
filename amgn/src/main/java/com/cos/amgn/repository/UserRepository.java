@@ -10,6 +10,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	// select * from user where username = ?parameter
 	public User findByUsername(String username); // jpa 쿼리 메소드
 	
+	public User findByEmail(String email);
+	
 	// select * from user where email = ?parameter
 	// public User findByEmail;
 }
