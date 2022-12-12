@@ -21,10 +21,10 @@ public class User {
 	@Id // primary key
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_num")
-	private int id; // auto_increment
+	private int id;
 	@Column(nullable = false, length = 50)
 	private String username;
-	@Column(nullable = false, unique = true, length = 100)
+	@Column(nullable = false, length = 100)
 	private String email;
 	@Column(nullable = false, length = 100) // 해쉬로 암호화 하기 위해 길이 지정
 	private String password;
@@ -51,22 +51,6 @@ public class User {
 	@CreationTimestamp
 	private Timestamp createDate; // user 생성 날짜
 	
-	@Builder
-	public void UserFormDto(String username, String password, String email, String birth, String phone, String gender,  String address, String education, String status, String university, String department, String mbti, String role) {
-		this.username = username;
-		this.password = password;
-		this.email = email;
-		this.birth = birth;
-		this.phone = phone;
-		this.gender = gender;
-		this.address = address;
-		this.education = education;
-		this.status = status;
-		this.university = university;
-		this.department = department;
-		this.mbti = mbti;
-		this.role = role;
-	}
 	
 	public String getUsername() {
 		return username;
